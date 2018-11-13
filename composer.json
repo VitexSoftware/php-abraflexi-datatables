@@ -1,0 +1,19 @@
+{
+    "name": "vitexsoftware/php-datatables-flexibee",
+    "description": "Description of project php-datatables-flexibee.",
+    "authors": [
+        {
+            "name": "Vitex",
+            "email": "info@vitexsoftware.cz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FlexiPeeHP\\ui\\DataTables\\": "src/FlexiPeeHP/ui/DataTables/"
+        }
+    },
+    "require": {
+        "vitexsoftware/flexipeehp-bricks": "dev-master",
+        "datatables/datatables": "dev-master"
+    }
+}
