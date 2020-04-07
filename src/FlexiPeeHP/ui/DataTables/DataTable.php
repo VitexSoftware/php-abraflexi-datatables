@@ -80,15 +80,13 @@ class DataTable extends \Ease\Html\TableTag
         $gridTagID     = $this->setTagId($engine->getObjectName());
         $this->columns = $this->prepareColumns($this->columnDefs);
 
-        \Ease\JQuery\Part::jQueryze();
-
 //        $this->includeJavaScript('assets/datatables.js');
 //        $this->includeCss('assets/datatables.css');
 
         $this->includeJavaScript('js/jquery.dataTables.min.js');
-        $this->includeJavaScript('js/dataTables.bootstrap.min.js');
+        $this->includeJavaScript('js/dataTables.bootstrap4.min.js');
 //        $this->includeJavaScript('assets/Select-1.2.6/js/dataTables.select.min.js');
-        $this->includeCss('css/dataTables.bootstrap.min.css');
+        $this->includeCss('css/dataTables.bootstrap4.min.css');
 //        $this->includeCss('assets/Select-1.2.6/css/select.bootstrap.min.css');
 //
 //        $this->includeJavaScript('assets/ColReorder-1.5.0/js/dataTables.colReorder.min.js');
@@ -162,8 +160,7 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
             $this->addButton($button);
         }
 
-        $this->includeJavaScript('js/savy.js');
-        $this->includeJavaScript('js/advancedfilter.js');
+//        $this->includeJavaScript('js/advancedfilter.js');
     }
 
     public static function getDateColumns($columns)
@@ -294,7 +291,7 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
             '.self::getColumnsScript($columns).'
         ],
         select: true
-        '.( $this->buttons ? ',        buttons: [ '.\Ease\JQuery\Part::partPropertiesToString($this->buttons).']'
+        '.( $this->buttons ? ',        buttons: [ '. \Ease\TWB4\Part::partPropertiesToString($this->buttons).']'
                 : '').'
     } );
 
@@ -329,7 +326,7 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
             $name               = $properties['name'];
             unset($properties['name']);
             $properties['data'] = $name;
-            $parts[]            = '{'.\Ease\JQuery\Part::partPropertiesToString($properties).'}';
+            $parts[]            = '{'. \Ease\TWB4\Part::partPropertiesToString($properties).'}';
         }
         return implode(", \n", $parts);
     }

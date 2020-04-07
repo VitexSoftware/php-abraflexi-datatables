@@ -1,3 +1,4 @@
 composer:
 	composer update
-	cp -r vendor/datatables/datatables/media/* src
+	cp -r vendor/datatables/datatables/media/* Example
+
