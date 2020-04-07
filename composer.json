@@ -1,6 +1,7 @@
 {
     "name": "vitexsoftware/php-datatables-flexibee",
-    "description": "Description of project php-datatables-flexibee.",
+    "description": "Show FlexiBee evidence data as DataTable",
+    "license": "MIT",
     "authors": [
         {
             "name": "Vitex",
