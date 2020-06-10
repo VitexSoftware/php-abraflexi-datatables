@@ -19,6 +19,6 @@
     },
     "require-dev": {
         "datatables/datatables": "dev-master",
-        "vitexsoftware/ease-twbootstrap4": "dev-master"
+        "vitexsoftware/ease-bootstrap4": "dev-master"
     }
 }
