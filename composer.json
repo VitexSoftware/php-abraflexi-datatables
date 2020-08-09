@@ -8,17 +8,17 @@
             "email": "info@vitexsoftware.cz"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "FlexiPeeHP\\ui\\DataTables\\": "src/FlexiPeeHP/ui/DataTables/"
         }
     },
     "require": {
-        "vitexsoftware/flexibee-bricks": "dev-master"
+        "vitexsoftware/flexibee-bricks": "* dev-master"
     },
     "require-dev": {
-        "datatables/datatables": "dev-master",
-        "vitexsoftware/ease-bootstrap4": "dev-master"
+        "datatables/datatables": "* dev-master",
+        "vitexsoftware/ease-twbootstrap4": "* dev-master"
     }
 }
