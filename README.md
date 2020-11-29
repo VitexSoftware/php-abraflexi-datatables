@@ -1,15 +1,15 @@
-![Package Logo](https://raw.githubusercontent.com/VitexSoftware/php-flexibee-datatables/ease-core-based/package-logo.png "Project Logo")
+![Package Logo](package-logo.png?raw=true "Project Logo")
 
 
-DataTables filled with FlexiBee by PHP
-======================================
+DataTables filled with ABRAFLEXI by PHP
+=======================================
 
-Show an FlexiBee Evidence in DataTable
+Show an ABRAFLEXI Evidence in DataTable
 
 Example
 -------
 
-first run **make** to update build autoloader and assets deploy. Then run [Example](Example) to see contents of FlexiBee evidence Adresar as DataTable styled by using Twitter Bootstrap
+first run **make** to update build autoloader and assets deploy. Then run [Example](Example) to see contents of ABRAFLEXI evidence Adresar as DataTable styled by using Twitter Bootstrap
 
-![Screenshot](https://raw.githubusercontent.com/VitexSoftware/php-flexibee-datatables/ease-core-based/screnshot.png "Screenshot of Examples")
+![Screenshot](screnshot.png?raw=true "Screenshot of Examples")
 

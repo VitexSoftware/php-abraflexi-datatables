@@ -17,6 +17,6 @@ $engine = new $class;
 unset($_REQUEST['class']);
 unset($_REQUEST['_']);
 
-$dataRaw = $engine->getColumnsFromFlexiBee('*',$_REQUEST);
+$dataRaw = $engine->getColumnsFromAbraFlexi('*',$_REQUEST);
 
 echo json_encode(['data' => $dataRaw, 'recordsTotal' => count($dataRaw)]);

@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-namespace FlexiPeeHP\ui\DataTables;
+namespace AbraFlexi\ui\DataTables;
 
 /**
  * Description of DataTable
@@ -18,7 +18,7 @@ class DataTable extends \Ease\Html\TableTag
      * Where to get/put data
      * @var string 
      */
-    public $ajax2db = 'flexibeedata.php';
+    public $ajax2db = 'abraflexidata.php';
 
     /**
      * Enable Editor ?
@@ -65,7 +65,7 @@ class DataTable extends \Ease\Html\TableTag
 
     /**
      * 
-     * @param \FlexiPeeHP\FlexiBeeRW $engine
+     * @param \AbraFlexi\AbraFlexiRW $engine
      * @param array $properties
      */
     public function __construct($engine = null, $properties = array())
@@ -179,6 +179,7 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
      */
     public function prepareColumns($easeColumns)
     {
+        $dataTablesColumns = [];
         foreach ($easeColumns as $columnRaw) {
             $column['label'] = $columnRaw['title'];
             $column['name'] = $columnRaw['propertyName'];
@@ -340,6 +341,7 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
      */
     public static function columnsToHeader($columns)
     {
+        $header = [];
         foreach ($columns as $properties) {
             if (array_key_exists('hidden', $properties) && ($properties['hidden']
                 == true)) {

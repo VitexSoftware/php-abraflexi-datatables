@@ -1,5 +1,5 @@
 {
-    "name": "vitexsoftware/php-datatables-flexibee",
+    "name": "vitexsoftware/php-datatables-abraflexi",
     "description": "Show FlexiBee evidence data as DataTable",
     "license": "MIT",
     "authors": [
@@ -11,14 +11,15 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "FlexiPeeHP\\ui\\DataTables\\": "src/FlexiPeeHP/ui/DataTables/"
+            "AbraFlexi\\ui\\DataTables\\": "src/AbraFlexi/ui/DataTables/"
         }
     },
     "require": {
-        "vitexsoftware/flexibee-bricks": "* dev-master"
+        "spojenet/flexibee": "2.0.x-dev",
+        "vitexsoftware/flexibee-bricks": "dev-abraflexi"
     },
     "require-dev": {
-        "datatables/datatables": "* dev-master",
-        "vitexsoftware/ease-twbootstrap4": "* dev-master"
+        "datatables/datatables": "^1.10",
+        "vitexsoftware/ease-twbootstrap4": ">=1.1"
     }
 }

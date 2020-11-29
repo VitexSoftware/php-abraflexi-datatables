@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33b809c4bcd4043e0c754e3b7acf834d",
+    "content-hash": "0b91965904ef463762182ef7b716daad",
     "packages": [
         {
             "name": "pear/console_getopt",
@@ -51,6 +51,10 @@
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Console_Getopt",
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Console_Getopt",
+                "source": "https://github.com/pear/Console_Getopt"
+            },
             "time": "2019-11-20T18:27:48+00:00"
         },
         {
@@ -109,6 +113,10 @@
             ],
             "description": "Class that provides multiple interfaces for sending emails.",
             "homepage": "http://pear.php.net/package/Mail",
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Mail",
+                "source": "https://github.com/pear/Mail"
+            },
             "time": "2017-04-11T17:27:29+00:00"
         },
         {
@@ -155,6 +163,10 @@
             ],
             "description": "Mail_Mime provides classes to create MIME messages",
             "homepage": "http://pear.php.net/package/Mail_Mime",
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Mail_Mime",
+                "source": "https://github.com/pear/Mail_Mime"
+            },
             "time": "2020-06-27T08:35:27+00:00"
         },
         {
@@ -199,6 +211,10 @@
                 }
             ],
             "description": "Minimal set of PEAR core files to be used as composer dependency",
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=PEAR",
+                "source": "https://github.com/pear/pear-core-minimal"
+            },
             "time": "2019-11-19T19:00:24+00:00"
         },
         {
@@ -254,25 +270,30 @@
             "keywords": [
                 "exception"
             ],
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=PEAR_Exception",
+                "source": "https://github.com/pear/PEAR_Exception"
+            },
             "time": "2019-12-10T10:24:42+00:00"
         },
         {
             "name": "spojenet/flexibee",
-            "version": "1.38",
+            "version": "2.0.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Spoje-NET/php-flexibee.git",
-                "reference": "4c4469a6baefa055b6ffba06d65497024336f6d8"
+                "url": "https://github.com/Spoje-NET/php-abraflexi.git",
+                "reference": "9261f900a16fe5627e694168666c687d7c6b5dd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spoje-NET/php-flexibee/zipball/4c4469a6baefa055b6ffba06d65497024336f6d8",
-                "reference": "4c4469a6baefa055b6ffba06d65497024336f6d8",
+                "url": "https://api.github.com/repos/Spoje-NET/php-abraflexi/zipball/9261f900a16fe5627e694168666c687d7c6b5dd0",
+                "reference": "9261f900a16fe5627e694168666c687d7c6b5dd0",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "vitexsoftware/ease-core": "^1"
+                "ext-json": "*",
+                "vitexsoftware/ease-core": ">=1.9"
             },
             "replace": {
                 "spoje.net/flexibee": "*",
@@ -280,12 +301,12 @@
             },
             "require-dev": {
                 "phing/phing": "^2",
-                "phpunit/phpunit": "^8"
+                "phpunit/phpunit": "^9"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "FlexiPeeHP\\": "src/FlexiPeeHP/"
+                    "AbraFlexi\\": "src/AbraFlexi/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -299,20 +320,24 @@
                 }
             ],
             "description": "Library for easy interaction with czech accounting system FlexiBee.",
-            "time": "2020-07-30T16:56:57+00:00"
+            "support": {
+                "issues": "https://github.com/Spoje-NET/php-abraflexi/issues",
+                "source": "https://github.com/Spoje-NET/php-abraflexi/tree/2.0"
+            },
+            "time": "2020-11-25T21:41:03+00:00"
         },
         {
             "name": "vitexsoftware/ease-core",
-            "version": "1.1",
+            "version": "1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VitexSoftware/php-ease-core.git",
-                "reference": "ecada6304d53d9cf5a95204ab3763a6079e1d03c"
+                "reference": "3a20e1afc396df696ce9197d72659c7d33efad3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VitexSoftware/php-ease-core/zipball/ecada6304d53d9cf5a95204ab3763a6079e1d03c",
-                "reference": "ecada6304d53d9cf5a95204ab3763a6079e1d03c",
+                "url": "https://api.github.com/repos/VitexSoftware/php-ease-core/zipball/3a20e1afc396df696ce9197d72659c7d33efad3a",
+                "reference": "3a20e1afc396df696ce9197d72659c7d33efad3a",
                 "shasum": ""
             },
             "require": {
@@ -335,7 +360,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0-or-later"
+                "MIT"
             ],
             "authors": [
                 {
@@ -346,24 +371,28 @@
             ],
             "description": "An PHP Framework for writing Applications",
             "homepage": "http://v.s.cz/ease.php",
-            "time": "2020-07-27T13:57:29+00:00"
+            "support": {
+                "issues": "https://github.com/VitexSoftware/php-ease-core/issues",
+                "source": "https://github.com/VitexSoftware/php-ease-core/tree/1.9"
+            },
+            "time": "2020-11-08T03:57:35+00:00"
         },
         {
             "name": "vitexsoftware/ease-html",
-            "version": "1.23.1",
+            "version": "1.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VitexSoftware/php-ease-html.git",
-                "reference": "873f864034fcdab3efcf3db66f6e8354524772e4"
+                "reference": "a1984c405ea097b0ac3ca4511ff87d20055d10d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VitexSoftware/php-ease-html/zipball/873f864034fcdab3efcf3db66f6e8354524772e4",
-                "reference": "873f864034fcdab3efcf3db66f6e8354524772e4",
+                "url": "https://api.github.com/repos/VitexSoftware/php-ease-html/zipball/a1984c405ea097b0ac3ca4511ff87d20055d10d0",
+                "reference": "a1984c405ea097b0ac3ca4511ff87d20055d10d0",
                 "shasum": ""
             },
             "require": {
-                "vitexsoftware/ease-core": ">= 0.42"
+                "vitexsoftware/ease-core": ">= 1.8"
             },
             "require-dev": {
                 "phpunit/phpunit": "*"
@@ -386,25 +415,29 @@
                 }
             ],
             "description": "Set of HTML rendering objects",
-            "time": "2020-07-19T12:38:50+00:00"
+            "support": {
+                "issues": "https://github.com/VitexSoftware/php-ease-html/issues",
+                "source": "https://github.com/VitexSoftware/php-ease-html/tree/1.25"
+            },
+            "time": "2020-10-15T21:53:52+00:00"
         },
         {
             "name": "vitexsoftware/flexibee-bricks",
-            "version": "dev-master",
+            "version": "dev-abraflexi",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VitexSoftware/php-flexibee-bricks.git",
-                "reference": "c3e2c6c0134c601743625549fa49c7c76a7c0b19"
+                "reference": "e8882af13e4aa25b60463be441633e8217723f33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VitexSoftware/php-flexibee-bricks/zipball/c3e2c6c0134c601743625549fa49c7c76a7c0b19",
-                "reference": "c3e2c6c0134c601743625549fa49c7c76a7c0b19",
+                "url": "https://api.github.com/repos/VitexSoftware/php-flexibee-bricks/zipball/e8882af13e4aa25b60463be441633e8217723f33",
+                "reference": "e8882af13e4aa25b60463be441633e8217723f33",
                 "shasum": ""
             },
             "require": {
-                "spojenet/flexibee": "^1.37",
-                "vitexsoftware/ease-html": "^1.23"
+                "spojenet/flexibee": "2.0.x-dev",
+                "vitexsoftware/ease-html": ">=1.25"
             },
             "require-dev": {
                 "codeception/codeception": "*",
@@ -413,26 +446,33 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "FlexiPeeHP\\Bricks\\": "src/FlexiPeeHP/Bricks",
-                    "FlexiPeeHP\\Bricks\\ConvertRules\\": "src/FlexiPeeHP/Bricks/ConvertRules",
-                    "FlexiPeeHP\\ui\\": "src/FlexiPeeHP/ui"
+                    "AbraFlexi\\Bricks\\": "src/AbraFlexi/Bricks",
+                    "AbraFlexi\\Bricks\\ConvertRules\\": "src/AbraFlexi/Bricks/ConvertRules",
+                    "AbraFlexi\\ui\\": "src/AbraFlexi/ui"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Vitex",
                     "email": "info@vitexsoftware.cz"
                 }
             ],
-            "description": "php-flexibee extending classes and widgets",
-            "time": "2020-07-29T16:02:16+00:00"
+            "description": "php-abraflexi extending classes and widgets",
+            "support": {
+                "issues": "https://github.com/VitexSoftware/php-flexibee-bricks/issues",
+                "source": "https://github.com/VitexSoftware/php-flexibee-bricks/tree/abraflexi"
+            },
+            "time": "2020-11-20T06:23:15+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "datatables/datatables",
-            "version": "dev-master",
+            "version": "1.10.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DataTables/DataTables.git",
@@ -451,24 +491,28 @@
             ],
             "description": "DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, which will add advanced interaction controls to any HTML table.",
             "homepage": "http://www.datatables.net/",
+            "support": {
+                "forum": "https://datatables.net/forums",
+                "source": "https://github.com/DataTables/DataTablesSrc/"
+            },
             "time": "2020-05-21T10:08:44+00:00"
         },
         {
             "name": "vitexsoftware/ease-twbootstrap4",
-            "version": "dev-master",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VitexSoftware/php-ease-twbootstrap4.git",
-                "reference": "31f64718218b1d23755b71cc5c3ce461589c0844"
+                "reference": "8ca159c923a03d8b5af4e89cc046f22ba1539b65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VitexSoftware/php-ease-twbootstrap4/zipball/31f64718218b1d23755b71cc5c3ce461589c0844",
-                "reference": "31f64718218b1d23755b71cc5c3ce461589c0844",
+                "url": "https://api.github.com/repos/VitexSoftware/php-ease-twbootstrap4/zipball/8ca159c923a03d8b5af4e89cc046f22ba1539b65",
+                "reference": "8ca159c923a03d8b5af4e89cc046f22ba1539b65",
                 "shasum": ""
             },
             "require": {
-                "vitexsoftware/ease-html": ">= 1.23"
+                "vitexsoftware/ease-html": ">= 1.25"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8"
@@ -490,19 +534,22 @@
                 }
             ],
             "description": "Set of Twitter Bootstrap 4 rendering objects",
-            "time": "2020-07-19T14:20:30+00:00"
+            "support": {
+                "issues": "https://github.com/VitexSoftware/php-ease-twbootstrap4/issues",
+                "source": "https://github.com/VitexSoftware/php-ease-twbootstrap4/tree/1.1"
+            },
+            "time": "2020-10-15T23:13:08+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "vitexsoftware/flexibee-bricks": 20,
-        "datatables/datatables": 20,
-        "vitexsoftware/ease-twbootstrap4": 20
+        "spojenet/flexibee": 20,
+        "vitexsoftware/flexibee-bricks": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
