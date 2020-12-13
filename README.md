@@ -6,6 +6,12 @@ DataTables filled with ABRAFLEXI by PHP
 
 Show an ABRAFLEXI Evidence in DataTable
 
+Installation:
+
+```shell
+composer require vitexsoftware/datatables-abraflexi
+```
+
 Example
 -------
 

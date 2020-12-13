@@ -1,6 +1,6 @@
 {
-    "name": "vitexsoftware/php-datatables-abraflexi",
-    "description": "Show FlexiBee evidence data as DataTable",
+    "name": "vitexsoftware/datatables-abraflexi",
+    "description": "Show AbarFlexi evidence data as DataTable",
     "license": "MIT",
     "authors": [
         {
