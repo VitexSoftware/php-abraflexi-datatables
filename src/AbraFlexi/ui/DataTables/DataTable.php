@@ -292,7 +292,7 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
             '.self::getColumnsScript($columns).'
         ],
         select: true
-        '.( $this->buttons ? ',        buttons: [ '. \Ease\TWB4\Part::partPropertiesToString($this->buttons).']'
+        '.( $this->buttons ? ',        buttons: [ '. \Ease\Part::partPropertiesToString($this->buttons).']'
                 : '').'
     } );
 
@@ -327,7 +327,7 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
             $name               = $properties['name'];
             unset($properties['name']);
             $properties['data'] = $name;
-            $parts[]            = '{'. \Ease\TWB4\Part::partPropertiesToString($properties).'}';
+            $parts[]            = '{'. \Ease\Part::partPropertiesToString($properties).'}';
         }
         return implode(", \n", $parts);
     }
