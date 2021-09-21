@@ -197,17 +197,6 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
         return $dataTablesColumns;
     }
 
-    public function finalize()
-    {
-        $this->addRowHeaderColumns(self::columnsToHeader($this->columns));
-//        $this->addItem(new FilterDialog($this->getTagID(), $this->columns));
-        $this->addJavascript($this->javaScript($this->columns));
-        if ($this->showFooter) {
-            $this->addFooter();
-        }
-
-        parent::finalize();
-    }
 
     public static function getUri()
     {
@@ -405,4 +394,22 @@ $.fn.dataTable.ext.buttons.filter'.$gridTagID.' = {
     {
         
     }
+    
+    /**
+     * Include requied assets in page
+     */
+    public function finalize()
+    {
+        $this->includeCss($this->css);
+        $this->includeJavascript($this->js);
+        $this->addRowHeaderColumns(self::columnsToHeader($this->columns));
+//        $this->addItem(new FilterDialog($this->getTagID(), $this->columns));
+        $this->addJavascript($this->javaScript($this->columns));
+        if ($this->showFooter) {
+            $this->addFooter();
+        }
+        parent::finalize();
+    }
+
+    
 }

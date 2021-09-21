@@ -14,9 +14,9 @@
             "AbraFlexi\\ui\\DataTables\\": "src/AbraFlexi/ui/DataTables/"
         }
     },
+    "minimum-stability": "dev",
     "require": {
-        "spojenet/flexibee": "2.0.x-dev",
-        "vitexsoftware/flexibee-bricks": "dev-abraflexi"
+        "vitexsoftware/abraflexi-bricks": "dev-main"
     },
     "require-dev": {
         "datatables/datatables": "^1.10",
