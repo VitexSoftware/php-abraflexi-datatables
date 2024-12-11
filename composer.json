@@ -8,7 +8,6 @@
             "email": "info@vitexsoftware.cz"
         }
     ],
-    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "AbraFlexi\\ui\\DataTables\\": "src/AbraFlexi/ui/DataTables/"
@@ -16,10 +15,21 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "vitexsoftware/abraflexi-bricks": "dev-main"
+        "vitexsoftware/abraflexi-bricks": "dev-main",
+        "vitexsoftware/ease-bootstrap5-widgets-abraflexi": "dev-main"
     },
     "require-dev": {
         "datatables/datatables": "^1.10",
-        "vitexsoftware/ease-twbootstrap4": ">=1.1"
+        "phpunit/phpunit": "*",
+        "phpstan/phpstan": "*",
+        "friendsofphp/php-cs-fixer": "^3.61",
+        "ergebnis/composer-normalize": "^2.43",
+        "ergebnis/php-cs-fixer-config": "^6.34",
+        "phpstan/phpstan-phpunit": "2.0.x-dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
     }
 }

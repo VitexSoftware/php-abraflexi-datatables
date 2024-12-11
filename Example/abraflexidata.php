@@ -1,16 +1,17 @@
 <?php
-require_once __DIR__.'/init.php';
+
+require_once '../vendor/autoload.php';
+
+
+\Ease\Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY'], '../.env');
 
 header('Content-Type: application/json');
-require_once './init.php';
 
-
-
-$class = $oPage->getRequestValue('class');
+$class = \Ease\WebPage::getRequestValue('class');
 
 
 /**
- * @var Engine Data Source
+ * @var \AbraFlexi\RO Data Source
  */
 $engine = new $class;
 

@@ -1,13 +1,17 @@
 <?php
 
 use AbraFlexi\ui\DataTables\DataTable;
+use Ease\TWB5\WebPage;
 
-require_once __DIR__ . '/init.php';
+require_once '../vendor/autoload.php';
 
-$engine = new \AbraFlexi\Adresar();
-$tabler = new DataTable($engine);
 
-$oPage->addItem($tabler);
+\Ease\Shared::init(['ABRAFLEXI_URL', 'ABRAFLEXI_LOGIN', 'ABRAFLEXI_PASSWORD', 'ABRAFLEXI_COMPANY'], '../.env');
 
-$oPage->draw();
+\Ease\WebPage::singleton(new WebPage(_('AbraFlexi x DataTables')));
 
+\Ease\Part::jQueryze();
+
+\Ease\WebPage::singleton()->addToMain(new DataTable(new \AbraFlexi\Adresar()));
+
+\Ease\WebPage::singleton()->draw();

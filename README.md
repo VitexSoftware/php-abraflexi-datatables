@@ -1,4 +1,4 @@
-![Package Logo](package-logo.png?raw=true "Project Logo")
+![Package Logo](abraflexi-datatables.svg?raw=true "Project Logo")
 
 
 DataTables filled with ABRAFLEXI by PHP
