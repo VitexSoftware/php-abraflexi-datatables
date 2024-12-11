@@ -20,8 +20,8 @@ namespace AbraFlexi\ui\DataTables;
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
-class DataTable extends \Ease\Html\TableTag {
-
+class DataTable extends \Ease\Html\TableTag
+{
     /**
      * Where to get/put data.
      */
@@ -52,31 +52,30 @@ class DataTable extends \Ease\Html\TableTag {
     public bool $showFooter = false;
     public \AbraFlexi\RO $engine;
     public $rndId;
-    private array $columnDefs = [];
 
     /**
-     * Additional Style for DataTable
-     * @var string
+     * Additional Style for DataTable.
      */
     public string $css = '';
 
     /**
-     * Additional JavaScript for DataTable
-     * @var string
+     * Additional JavaScript for DataTable.
      */
     public string $js = '';
+    private array $columnDefs = [];
 
     /**
      * @param \AbraFlexi\RW $engine
      */
-    public function __construct(\AbraFlexi\RO $engine, array $properties = []) {
+    public function __construct(\AbraFlexi\RO $engine, array $properties = [])
+    {
         $this->engine = $engine;
         $this->ajax2db = $this->dataSourceURI($engine);
         $this->columnDefs = $engine->getOnlineColumnsInfo();
 
         parent::__construct(
-                null,
-                ['class' => 'display', 'style' => 'width: 100%'],
+            null,
+            ['class' => 'display', 'style' => 'width: 100%'],
         );
 
         $gridTagID = $this->setTagId($engine->getObjectName());
@@ -130,7 +129,7 @@ class DataTable extends \Ease\Html\TableTag {
         $this->addJavaScript(<<<'EOD'
 $.fn.dataTable.ext.buttons.reload = {
     text: '
-EOD . _('Reload') . <<<'EOD'
+EOD._('Reload').<<<'EOD'
 ',
     action: function ( e, dt, node, config ) {
         dt.ajax.reload();
@@ -141,26 +140,26 @@ EOD);
         $this->addJavaScript(<<<'EOD'
 
 $("#gridFilter
-EOD . $gridTagID . <<<'EOD'
+EOD.$gridTagID.<<<'EOD'
 ").hide( );
 $.fn.dataTable.ext.buttons.filter
-EOD . $gridTagID . <<<'EOD'
+EOD.$gridTagID.<<<'EOD'
  = {
     text: '
-EOD . _('Filter') . <<<'EOD'
+EOD._('Filter').<<<'EOD'
 ',
     action: function ( e, dt, node, config ) {
         $("#gridFilter
-EOD . $gridTagID . '").appendTo( $("#' . $gridTagID . <<<'EOD'
+EOD.$gridTagID.'").appendTo( $("#'.$gridTagID.<<<'EOD'
 _filter") );
         $("#gridFilter
-EOD . $gridTagID . <<<'EOD'
+EOD.$gridTagID.<<<'EOD'
 ").toggle();
     }
 };
 EOD);
 
-        $this->defaultButtons[] = 'filter' . $gridTagID;
+        $this->defaultButtons[] = 'filter'.$gridTagID;
 
         if (\array_key_exists('buttons', $properties)) {
             if ($properties['buttons'] === false) {
@@ -179,7 +178,8 @@ EOD);
         //        $this->includeJavaScript('js/advancedfilter.js');
     }
 
-    public static function getDateColumns(array $columns): array {
+    public static function getDateColumns(array $columns): array
+    {
         $dateColumns = [];
 
         foreach ($columns as $columnInfo) {
@@ -196,7 +196,8 @@ EOD);
      *
      * @param mixed $easeColumns
      */
-    public function prepareColumns(array $easeColumns): array {
+    public function prepareColumns(array $easeColumns): array
+    {
         $dataTablesColumns = [];
 
         foreach ($easeColumns as $columnRaw) {
@@ -210,7 +211,7 @@ EOD);
                     break;
 
                 default:
-                    $this->addStatusMessage('Uknown column ' . $columnRaw['name'] . ' type ' . $columnRaw['type']);
+                    $this->addStatusMessage('Uknown column '.$columnRaw['name'].' type '.$columnRaw['type']);
                     $column['type'] = 'text';
 
                     break;
@@ -222,10 +223,11 @@ EOD);
         return $dataTablesColumns;
     }
 
-    public static function getUri() {
+    public static function getUri()
+    {
         $uri = parent::getUri();
 
-        return substr($uri, -1) === '/' ? $uri . 'index.php' : $uri;
+        return substr($uri, -1) === '/' ? $uri.'index.php' : $uri;
     }
 
     /**
@@ -235,14 +237,15 @@ EOD);
      *
      * @return string Data Source URI
      */
-    public function dataSourceURI($engine) {
+    public function dataSourceURI($engine)
+    {
         $conds = ['class' => \get_class($engine)];
 
         if (null !== $engine->filter) {
             $conds = array_merge($engine->filter, $conds);
         }
 
-        return $this->ajax2db . '?' . http_build_query($conds);
+        return $this->ajax2db.'?'.http_build_query($conds);
     }
 
     /**
@@ -250,34 +253,35 @@ EOD);
      *
      * @param string $function create|edit|remove
      */
-    public function addButton($function): void {
-        $this->buttons[] = '{extend: "' . $function . '"}';
+    public function addButton($function): void
+    {
+        $this->buttons[] = '{extend: "'.$function.'"}';
     }
 
     public function addCustomButton(
-            $caption,
-            $callFunction = "alert( 'Button activated' );"
+        $caption,
+        $callFunction = "alert( 'Button activated' );"
     ): void {
         $this->buttons[] = <<<'EOD'
 {
                 text: '
-EOD . $caption . <<<'EOD'
+EOD.$caption.<<<'EOD'
 ',
                 action: function ( e, dt, node, config ) {
 
-EOD . $callFunction . <<<'EOD'
+EOD.$callFunction.<<<'EOD'
 
                 }
 }
 EOD;
     }
 
-    public function preTableCode(): void {
-        
+    public function preTableCode(): void
+    {
     }
 
-    public function tableCode(): void {
-        
+    public function tableCode(): void
+    {
     }
 
     /**
@@ -285,18 +289,19 @@ EOD;
      *
      * @return string
      */
-    public function javaScript($columns) {
+    public function javaScript($columns)
+    {
         $tableID = $this->getTagID();
 
-        return $this->preTableCode() . <<<'EOD'
+        return $this->preTableCode().<<<'EOD'
 
 //    $.fn.dataTable.moment('DD. MM. YYYY');
 //    $.fn.dataTable.moment('YYYY-MM-DD HH:mm:ss');
     var
-EOD . $tableID . ' = $(\'#' . $tableID . <<<'EOD'
+EOD.$tableID.' = $(\'#'.$tableID.<<<'EOD'
 ').DataTable( {
 
-EOD . $this->footerCallback() . <<<'EOD'
+EOD.$this->footerCallback().<<<'EOD'
 
         dom: "Bfrtip",
         colReorder: true,
@@ -305,36 +310,36 @@ EOD . $this->footerCallback() . <<<'EOD'
         "processing": false,
         "serverSide": false,
         "lengthMenu": [[10, 25, 50, 100, 200, 500, -1], [10, 25, 50, 100 ,200 ,500 , "
-EOD . _('All pages') . <<<'EOD'
+EOD._('All pages').<<<'EOD'
 "]],
         "language": {
                 "url": "assets/i18n/Czech.lang"
         },
 
-EOD . $this->tableCode($tableID) . <<<'EOD'
+EOD.$this->tableCode($tableID).<<<'EOD'
 
         ajax: "
-EOD . $this->ajax2db . <<<'EOD'
+EOD.$this->ajax2db.<<<'EOD'
 ",
 
-EOD . $this->columnDefs() . <<<'EOD'
+EOD.$this->columnDefs().<<<'EOD'
 
         columns: [
 
-EOD . self::getColumnsScript($columns) . <<<'EOD'
+EOD.self::getColumnsScript($columns).<<<'EOD'
 
         ],
         select: true
 
-EOD . ($this->buttons ? ',        buttons: [ ' . \Ease\Part::partPropertiesToString($this->buttons) . ']' : '') . <<<'EOD'
+EOD.($this->buttons ? ',        buttons: [ '.\Ease\Part::partPropertiesToString($this->buttons).']' : '').<<<'EOD'
 
     } );
 
 
-EOD . $this->postTableCode() . <<<'EOD'
+EOD.$this->postTableCode().<<<'EOD'
 
             $('.tablefilter').change( function() {
-EOD . $tableID . <<<'EOD'
+EOD.$tableID.<<<'EOD'
 .draw(); } );
 
 EOD;
@@ -343,11 +348,12 @@ EOD;
     }
 
     //    '.self::columnIndexNames($columns,$tableID).'
-    public static function columnIndexNames($columns, $of) {
+    public static function columnIndexNames($columns, $of)
+    {
         $colsCode[] = 'var tableColumnIndex = [];';
 
         foreach (\Ease\Functions::reindexArrayBy($columns, 'name') as $colName => $columnInfo) {
-            $colsCode[] = "tableColumnIndex['" . $colName . "'] = " . $of . ".column('" . $colName . ":name').index();";
+            $colsCode[] = "tableColumnIndex['".$colName."'] = ".$of.".column('".$colName.":name').index();";
         }
 
         return implode("\n", $colsCode);
@@ -358,14 +364,15 @@ EOD;
      *
      * @return string
      */
-    public static function getColumnsScript(array $columns) {
+    public static function getColumnsScript(array $columns)
+    {
         $parts = [];
 
         foreach ($columns as $properties) {
             $name = $properties['name'];
             unset($properties['name']);
             $properties['data'] = $name;
-            $parts[] = '{' . \Ease\Part::partPropertiesToString($properties) . '}';
+            $parts[] = '{'.\Ease\Part::partPropertiesToString($properties).'}';
         }
 
         return implode(", \n", $parts);
@@ -378,7 +385,8 @@ EOD;
      *
      * @return array<string, string>
      */
-    public static function columnsToHeader(array $columns): array {
+    public static function columnsToHeader(array $columns): array
+    {
         $header = [];
 
         foreach ($columns as $properties) {
@@ -403,7 +411,8 @@ EOD;
      *
      * @return string
      */
-    public function footerCallback($initialContent = null) {
+    public function footerCallback($initialContent = null)
+    {
         if (empty($initialContent)) {
             $foterCallBack = '';
         } else {
@@ -420,7 +429,7 @@ EOD;
                         i : 0;
             };
 
-EOD . $initialContent . <<<'EOD'
+EOD.$initialContent.<<<'EOD'
 
         },
 
@@ -430,7 +439,8 @@ EOD;
         return $foterCallBack;
     }
 
-    public function addFooter(): void {
+    public function addFooter(): void
+    {
         foreach (current($this->tHead->getContents())->getContents() as $column) {
             $columns[] = '';
         }
@@ -439,18 +449,19 @@ EOD;
         $this->addRowFooterColumns($columns);
     }
 
-    public function columnDefs(): void {
-        
+    public function columnDefs(): void
+    {
     }
 
-    public function postTableCode(): void {
-        
+    public function postTableCode(): void
+    {
     }
 
     /**
      * Include required assets in page.
      */
-    public function finalize(): void {
+    public function finalize(): void
+    {
         $this->includeCss($this->css);
         $this->includeJavascript($this->js);
         $this->addRowHeaderColumns(self::columnsToHeader($this->columns));
