@@ -1,0 +1,35 @@
+{
+    "name": "deb/datatables-abraflexi",
+    "description": "Show AbarFlexi evidence data as DataTable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vitex",
+            "email": "info@vitexsoftware.cz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AbraFlexi\\ui\\DataTables\\": "src/AbraFlexi/ui/DataTables/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "vitexsoftware/abraflexi-bricks": "dev-main",
+        "vitexsoftware/ease-bootstrap5-widgets-abraflexi": "dev-main"
+    },
+    "require-dev": {
+        "datatables/datatables": "^1.10",
+        "phpunit/phpunit": "*",
+        "phpstan/phpstan": "*",
+        "friendsofphp/php-cs-fixer": "^3.61",
+        "ergebnis/composer-normalize": "^2.43",
+        "ergebnis/php-cs-fixer-config": "^6.34",
+        "phpstan/phpstan-phpunit": "2.0.x-dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    }
+}
