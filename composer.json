@@ -15,16 +15,16 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "vitexsoftware/abraflexi-bricks": "dev-main",
-        "vitexsoftware/ease-bootstrap5-widgets-abraflexi": "dev-main"
+        "vitexsoftware/abraflexi-bricks": "^1.4",
+        "vitexsoftware/ease-bootstrap5-widgets-abraflexi": "^1.4"
     },
     "require-dev": {
         "datatables/datatables": "^1.10",
         "phpunit/phpunit": "*",
         "phpstan/phpstan": "*",
-        "friendsofphp/php-cs-fixer": "^3.61",
-        "ergebnis/composer-normalize": "^2.43",
-        "ergebnis/php-cs-fixer-config": "^6.34",
+        "friendsofphp/php-cs-fixer": "^3.84",
+        "ergebnis/composer-normalize": "^2.47",
+        "ergebnis/php-cs-fixer-config": "^6.50",
         "phpstan/phpstan-phpunit": "2.0.x-dev"
     },
     "config": {
