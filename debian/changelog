@@ -1,6 +1,13 @@
-php-abraflexi-datatables (0.1.0) UNRELEASED; urgency=low
+php-abraflexi-datatables (1.1.0) UNRELEASED; urgency=medium
 
+  * stabilized deps
+
+ -- Vitex <vitezslav.dvorak@spojenet.cz>  Thu, 24 Jul 2025 15:19:47 +0200
+
+php-abraflexi-datatables (0.1.0) unstable; urgency=low
+
+  [ Vítězslav Dvořák ]
   * Initial release. Closes: #nnnn
     <nnnn is the bug number of your ITP>
 
- -- Vítězslav Dvořák <info@vitexsoftware.cz>  Thu, 10 Apr 2025 11:16:07 +0200
+ -- Vitex <vitezslav.dvorak@spojenet.cz>  Thu, 24 Jul 2025 15:19:37 +0200
