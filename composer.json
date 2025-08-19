@@ -22,7 +22,7 @@
         "datatables/datatables": "^1.10",
         "phpunit/phpunit": "*",
         "phpstan/phpstan": "*",
-        "friendsofphp/php-cs-fixer": "^3.85",
+        "friendsofphp/php-cs-fixer": "^3.86",
         "ergebnis/composer-normalize": "^2.47",
         "ergebnis/php-cs-fixer-config": "^6.51",
         "phpstan/phpstan-phpunit": "2.0.7"
