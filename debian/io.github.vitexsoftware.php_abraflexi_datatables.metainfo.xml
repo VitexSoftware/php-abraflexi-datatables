@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.vitexsoftware.php_abraflexi_datatables</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>php-abraflexi-datatables</name>
+  <summary>DataTables integration for AbraFlexi PHP applications</summary>
+  <description>
+    <p>
+      This package provides a PHP library for seamless integration of the DataTables JavaScript library with AbraFlexi-based applications. It enables developers to easily display, manage, and interact with AbraFlexi data in dynamic, interactive tables within web applications. The package is designed to work with the VitexSoftware EASE framework and supports Bootstrap 5 widgets for a modern UI.
+    </p>
+  </description>
+  <categories>
+    <category>Utility</category>
+  </categories>
+  <url type="homepage">https://github.com/VitexSoftware/php-abraflexi-datatables</url>
+  <url type="bugtracker">https://github.com/VitexSoftware/php-abraflexi-datatables/issues</url>
+  <developer id="cz.vitexsoftware">
+    <name>VitexSoftware</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+</component>
