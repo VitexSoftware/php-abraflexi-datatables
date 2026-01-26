@@ -15,7 +15,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "vitexsoftware/abraflexi-bricks": "^1.4",
+        "vitexsoftware/abraflexi-bricks": "^1.5",
         "vitexsoftware/ease-bootstrap5-widgets-abraflexi": "^1.4"
     },
     "require-dev": {
