@@ -1,15 +1,17 @@
 #!/usr/bin/make -f
-# You must remove unused comment lines for the released package.
-#export DH_VERBOSE = 1
-#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
-#export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1
+
+PKG_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/~.*//')
+PKG_SOURCE  := $(shell jq -r '.name' composer.json)
+PKG_TYPE    := $(shell jq -r '.type' composer.json)
 
 %:
 	dh $@
 
-#override_dh_auto_install:
-#	dh_auto_install -- prefix=/usr
-
-#override_dh_install:
-#	dh_install --list-missing -X.pyc -X.pyo
+override_dh_install:
+	dh_install
+	sed -i "s|'unknown'|'$(PKG_SOURCE)'|" \
+		debian/php-abraflexi-datatables/usr/share/php/AbraFlexiUiDataTables/autoload.php
+	sed -i "s|'0.0.0'|'$(PKG_VERSION)'|" \
+		debian/php-abraflexi-datatables/usr/share/php/AbraFlexiUiDataTables/autoload.php
+	sed -i "s|'library'|'$(PKG_TYPE)'|g" \
+		debian/php-abraflexi-datatables/usr/share/php/AbraFlexiUiDataTables/autoload.php

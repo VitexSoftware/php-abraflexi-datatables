@@ -2,6 +2,7 @@
     "name": "vitexsoftware/datatables-abraflexi",
     "description": "Show AbarFlexi evidence data as DataTable",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Vitex",

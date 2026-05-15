@@ -1,2 +1,3 @@
 src/AbraFlexi/ui/DataTables/*.php /usr/share/php/AbraFlexiUiDataTables
 debian/composer.json /usr/share/php/AbraFlexiUiDataTables
+debian/autoload.php /usr/share/php/AbraFlexiUiDataTables
