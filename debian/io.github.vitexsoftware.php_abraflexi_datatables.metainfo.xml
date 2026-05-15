@@ -18,5 +18,6 @@
   <developer id="cz.vitexsoftware">
     <name>VitexSoftware</name>
   </developer>
+  <icon type="stock">abraflexi-datatables</icon>
   <content_rating type="oars-1.1"/>
 </component>
