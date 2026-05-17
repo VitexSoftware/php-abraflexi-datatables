@@ -161,7 +161,7 @@ EOD);
 
         $this->defaultButtons[] = 'filter'.$gridTagID;
 
-        if (\array_key_exists('buttons', $properties)) {
+        if (array_key_exists('buttons', $properties)) {
             if ($properties['buttons'] === false) {
                 $this->defaultButtons = [];
             } else {
@@ -390,7 +390,7 @@ EOD;
         $header = [];
 
         foreach ($columns as $properties) {
-            if (\array_key_exists('hidden', $properties) && ($properties['hidden'] === true)) {
+            if (array_key_exists('hidden', $properties) && ($properties['hidden'] === true)) {
                 continue;
             }
 
