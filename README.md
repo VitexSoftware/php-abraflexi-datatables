@@ -1,3 +1,6 @@
+![Packaging: deb](https://img.shields.io/badge/packaging-.deb-red?logo=debian&logoColor=white)
+
+
 ![Package Logo](abraflexi-datatables.svg?raw=true "Project Logo")
 
 php-abraflexi-datatables
