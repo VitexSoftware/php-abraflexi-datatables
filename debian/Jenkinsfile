@@ -53,6 +53,7 @@ distributions.each { distro ->
         node {
             ansiColor('xterm') {
                 stage('Checkout ' + distroName) {
+                    deleteDir()
                     unstash 'src'
                     def imageName = vendor + '/' + distro
                     buildImage = docker.image(imageName)
