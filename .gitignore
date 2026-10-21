@@ -50,6 +50,6 @@
 /composer.lock
 /social-preview.png
 /debian/.debhelper/
-/debian/php-abraflexi-datatables/
+/debian/php-vitexsoftware-abraflexi-datatables/
 debian/files
 

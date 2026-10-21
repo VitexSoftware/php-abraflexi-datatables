@@ -16,12 +16,20 @@ declare(strict_types=1);
 namespace AbraFlexi\ui\DataTables;
 
 /**
- * Description of DataTable.
+ * AbraFlexi evidence rendered as a Bootstrap 5 DataTable.
+ *
+ * Assets default to Debian package libjs-jquery-datatables
+ * ({@see self::JS_ROOT}).
  *
  * @author Vítězslav Dvořák <info@vitexsoftware.cz>
  */
 class DataTable extends \Ease\Html\TableTag
 {
+    /**
+     * Debian jquery-datatables web path (javascript-common Alias).
+     */
+    public const JS_ROOT = '/javascript/jquery-datatables';
+
     /**
      * Where to get/put data.
      */
@@ -34,23 +42,34 @@ class DataTable extends \Ease\Html\TableTag
 
     /**
      * Buttons to render on top of the datatable.
+     *
+     * @var list<string>
      */
     public array $buttons = [];
 
     /**
      * Buttons to show by default.
      *
-     * @var array<string>
+     * Empty by default: Debian libjs-jquery-datatables does not ship the
+     * Buttons extension. Pass ['buttons' => ['reload', …]] only when you also
+     * load dataTables.buttons (+ bootstrap5) yourself (or via CDN).
+     *
+     * @var list<string>
      */
-    public array $defaultButtons = ['reload', 'copy', 'excel', 'print', 'pdf', 'pageLength',
-        'colvis'];
+    public array $defaultButtons = [];
+
+    /**
+     * @var list<array<string, mixed>>
+     */
     public array $columns = [];
 
     /**
      * Add footer columns.
      */
     public bool $showFooter = false;
+
     public \AbraFlexi\RO $engine;
+
     public $rndId;
 
     /**
@@ -62,16 +81,28 @@ class DataTable extends \Ease\Html\TableTag
      * Additional JavaScript for DataTable.
      */
     public string $js = '';
-    private array $columnDefs = [];
 
     /**
-     * @param \AbraFlexi\RW $engine
+     * DataTables language JSON URL (Czech by default).
+     */
+    public string $languageUrl = 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/cs.json';
+
+    /**
+     * Raw column info from engine (getOnlineColumnsInfo / custom).
+     *
+     * @var array<string, array<string, mixed>>
+     */
+    protected array $columnDefs = [];
+
+    /**
+     * @param \AbraFlexi\RO        $engine
+     * @param array<string, mixed> $properties e.g. ['buttons' => ['reload']|false]
      */
     public function __construct(\AbraFlexi\RO $engine, array $properties = [])
     {
         $this->engine = $engine;
         $this->ajax2db = $this->dataSourceURI($engine);
-        $this->columnDefs = $engine->getOnlineColumnsInfo();
+        $this->columnDefs = $engine->getOnlineColumnsInfo() ?? [];
 
         parent::__construct(
             null,
@@ -81,52 +112,32 @@ class DataTable extends \Ease\Html\TableTag
         $gridTagID = $this->setTagId($engine->getObjectName());
         $this->columns = $this->prepareColumns($this->columnDefs);
 
-        //        $this->includeJavaScript('assets/datatables.js');
-        //        $this->includeCss('assets/datatables.css');
+        \Ease\Part::jQueryze();
+        $this->includeJavaScript(self::JS_ROOT.'/jquery.dataTables.min.js');
+        $this->includeJavaScript(self::JS_ROOT.'/dataTables.bootstrap5.min.js');
+        $this->includeCss(self::JS_ROOT.'/css/dataTables.bootstrap5.min.css');
 
-        $this->includeJavaScript('js/jquery.dataTables.min.js');
-        $this->includeJavaScript('js/dataTables.bootstrap5.min.js');
-        //        $this->includeJavaScript('assets/Select-1.2.6/js/dataTables.select.min.js');
-        $this->includeCss('css/dataTables.bootstrap5.min.css');
-        //        $this->includeCss('assets/Select-1.2.6/css/select.bootstrap.min.css');
-        //
-        //        $this->includeJavaScript('assets/ColReorder-1.5.0/js/dataTables.colReorder.min.js');
-        //        $this->includeCss('assets/ColReorder-1.5.0/css/colReorder.bootstrap.min.css');
-        //
-        //        $this->includeJavaScript('assets/Responsive-2.2.2/js/dataTables.responsive.min.js');
-        //        $this->includeJavaScript('assets/Responsive-2.2.2/js/responsive.bootstrap.min.js');
-        //
-        //        $this->includeJavaScript('js/selectize.min.js');
-        //        $this->includeCss('css/slectize.css');
-        //        $this->includeCss('css/selectize.bootstrap3.css');
-        //
-        //
         $this->setTagClass('table table-striped table-bordered');
-        //
-        //        $this->includeJavaScript('assets/Buttons-1.5.2/js/dataTables.buttons.min.js');
-        //        $this->includeJavaScript('assets/Buttons-1.5.2/js/buttons.bootstrap.min.js');
-        //
-        //        $this->includeCss('assets/Buttons-1.5.2/css/buttons.bootstrap.min.css');
-        //
-        //        $this->includeJavaScript('assets/JSZip-2.5.0/jszip.min.js');
-        //        $this->includeJavaScript('assets/pdfmake-0.1.36/pdfmake.min.js');
-        //        $this->includeJavaScript('assets/pdfmake-0.1.36/vfs_fonts.js');
-        //        $this->includeJavaScript('assets/Buttons-1.5.2/js/buttons.html5.min.js');
-        //        $this->includeJavaScript('assets/Buttons-1.5.2/js/buttons.print.min.js');
-        //
-        //        $this->includeJavaScript('assets/Buttons-1.5.2/js/buttons.colVis.min.js');
-        //
-        //        $this->includeCss('assets/RowGroup-1.0.3/css/rowGroup.bootstrap.min.css');
-        //        $this->includeJavaScript('assets/RowGroup-1.0.3/js/rowGroup.bootstrap.min.js');
-        //        $this->includeJavaScript('assets/RowGroup-1.0.3/js/dataTables.rowGroup.min.js');
-        //
-        // //        $this->includeCss('https://nightly.datatables.net/rowgroup/css/rowGroup.dataTables.css');
-        // //        $this->includeJavaScript('https://nightly.datatables.net/rowgroup/js/dataTables.rowGroup.js');
-        //
-        //        $this->includeJavaScript('assets/moment-with-locales.js');
-        //        $this->includeJavaScript('//cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js');
 
-        $this->addJavaScript(<<<'EOD'
+        if (\array_key_exists('buttons', $properties)) {
+            if ($properties['buttons'] === false) {
+                $this->defaultButtons = [];
+            } else {
+                $this->defaultButtons = [];
+                foreach ($properties['buttons'] as $function) {
+                    $this->addButton((string) $function);
+                }
+            }
+        }
+
+        foreach ($this->defaultButtons as $button) {
+            $this->addButton($button);
+        }
+
+        // Register reload helper only when Buttons extension is expected.
+        if ($this->buttons !== []) {
+            $this->addJavaScript(<<<'EOD'
+$.fn.dataTable.ext.buttons = $.fn.dataTable.ext.buttons || {};
 $.fn.dataTable.ext.buttons.reload = {
     text: '
 EOD._('Reload').<<<'EOD'
@@ -136,55 +147,23 @@ EOD._('Reload').<<<'EOD'
     }
 };
 EOD);
-
-        $this->addJavaScript(<<<'EOD'
-
-$("#gridFilter
-EOD.$gridTagID.<<<'EOD'
-").hide( );
-$.fn.dataTable.ext.buttons.filter
-EOD.$gridTagID.<<<'EOD'
- = {
-    text: '
-EOD._('Filter').<<<'EOD'
-',
-    action: function ( e, dt, node, config ) {
-        $("#gridFilter
-EOD.$gridTagID.'").appendTo( $("#'.$gridTagID.<<<'EOD'
-_filter") );
-        $("#gridFilter
-EOD.$gridTagID.<<<'EOD'
-").toggle();
-    }
-};
-EOD);
-
-        $this->defaultButtons[] = 'filter'.$gridTagID;
-
-        if (array_key_exists('buttons', $properties)) {
-            if ($properties['buttons'] === false) {
-                $this->defaultButtons = [];
-            } else {
-                foreach ($properties['buttons'] as $function) {
-                    $this->addButton($function);
-                }
-            }
         }
 
-        foreach ($this->defaultButtons as $button) {
-            $this->addButton($button);
-        }
-
-        //        $this->includeJavaScript('js/advancedfilter.js');
+        unset($gridTagID);
     }
 
+    /**
+     * @param list<array<string, mixed>> $columns
+     *
+     * @return array<string, string>
+     */
     public static function getDateColumns(array $columns): array
     {
         $dateColumns = [];
 
         foreach ($columns as $columnInfo) {
-            if ($columnInfo['type'] === 'date') {
-                $dateColumns[$columnInfo['name']] = $columnInfo['label'];
+            if (($columnInfo['type'] ?? '') === 'date') {
+                $dateColumns[$columnInfo['name']] = $columnInfo['label'] ?? $columnInfo['name'];
             }
         }
 
@@ -192,26 +171,46 @@ EOD);
     }
 
     /**
-     * Convert Ease Columns to DataTables Format.
+     * Convert AbraFlexi properties.json columns to DataTables format.
      *
-     * @param mixed $easeColumns
+     * @param array<string, array<string, mixed>> $easeColumns
+     *
+     * @return list<array<string, mixed>>
      */
     public function prepareColumns(array $easeColumns): array
     {
         $dataTablesColumns = [];
 
         foreach ($easeColumns as $columnRaw) {
-            $column['label'] = $columnRaw['title'];
-            $column['name'] = $columnRaw['propertyName'];
+            $column = [
+                'label' => (string) ($columnRaw['title'] ?? $columnRaw['name'] ?? $columnRaw['propertyName'] ?? ''),
+                'name' => (string) ($columnRaw['propertyName'] ?? $columnRaw['name'] ?? ''),
+                'type' => 'text',
+            ];
 
-            switch ($columnRaw['type']) {
+            if ($column['name'] === '') {
+                continue;
+            }
+
+            $abraflexiType = strtolower((string) ($columnRaw['type'] ?? 'string'));
+
+            switch ($abraflexiType) {
                 case 'string':
-                    $column['type'] = 'text';
+                case 'text':
+                case 'integer':
+                case 'numeric':
+                case 'logic':
+                case 'select':
+                case 'relation':
+                case 'date':
+                case 'datetime':
+                case 'timestamp':
+                    $column['type'] = \in_array($abraflexiType, ['date', 'datetime', 'timestamp'], true)
+                        ? 'date'
+                        : 'text';
 
                     break;
-
                 default:
-                    $this->addStatusMessage('Uknown column '.$columnRaw['name'].' type '.$columnRaw['type']);
                     $column['type'] = 'text';
 
                     break;
@@ -233,16 +232,17 @@ EOD);
     /**
      * Prepare DataSource URI.
      *
-     * @param Engine $engine
+     * @param \AbraFlexi\RO $engine
      *
      * @return string Data Source URI
      */
-    public function dataSourceURI($engine)
+    public function dataSourceURI($engine): string
     {
         $conds = ['class' => $engine::class];
 
-        if (null !== $engine->filter) {
-            $conds = array_merge($engine->filter, $conds);
+        // AbraFlexi\RO::$filter is a ?string (FlexiBee @filter expression), not an array.
+        if (\is_string($engine->filter) && $engine->filter !== '') {
+            $conds['filter'] = $engine->filter;
         }
 
         return $this->ajax2db.'?'.http_build_query($conds);
@@ -251,7 +251,7 @@ EOD);
     /**
      * Add TOP button.
      *
-     * @param string $function create|edit|remove
+     * @param string $function create|edit|remove|reload|pageLength|…
      */
     public function addButton($function): void
     {
@@ -276,79 +276,88 @@ EOD.$callFunction.<<<'EOD'
 EOD;
     }
 
-    public function preTableCode(): void
+    /**
+     * Hook before DataTable JS options (must return string — concatenated into JS).
+     */
+    public function preTableCode(): string
     {
-    }
-
-    public function tableCode(): void
-    {
+        return '';
     }
 
     /**
-     * @param array $columns
+     * Extra DataTable options snippet (must return string — concatenated into JS).
      *
-     * @return string
+     * @param string|null $tableID
      */
-    public function javaScript($columns)
+    public function tableCode($tableID = null): string
     {
-        $tableID = $this->getTagID();
-
-        return $this->preTableCode().<<<'EOD'
-
-//    $.fn.dataTable.moment('DD. MM. YYYY');
-//    $.fn.dataTable.moment('YYYY-MM-DD HH:mm:ss');
-    var
-EOD.$tableID.' = $(\'#'.$tableID.<<<'EOD'
-').DataTable( {
-
-EOD.$this->footerCallback().<<<'EOD'
-
-        dom: "Bfrtip",
-        colReorder: true,
-        stateSave: true,
-        responsive: true,
-        "processing": false,
-        "serverSide": false,
-        "lengthMenu": [[10, 25, 50, 100, 200, 500, -1], [10, 25, 50, 100 ,200 ,500 , "
-EOD._('All pages').<<<'EOD'
-"]],
-        "language": {
-                "url": "assets/i18n/Czech.lang"
-        },
-
-EOD.$this->tableCode($tableID).<<<'EOD'
-
-        ajax: "
-EOD.$this->ajax2db.<<<'EOD'
-",
-
-EOD.$this->columnDefs().<<<'EOD'
-
-        columns: [
-
-EOD.self::getColumnsScript($columns).<<<'EOD'
-
-        ],
-        select: true
-
-EOD.($this->buttons ? ',        buttons: [ '.\Ease\Part::partPropertiesToString($this->buttons).']' : '').<<<'EOD'
-
-    } );
-
-
-EOD.$this->postTableCode().<<<'EOD'
-
-            $('.tablefilter').change( function() {
-EOD.$tableID.<<<'EOD'
-.draw(); } );
-
-EOD;
-        //    $("#'.$tableID.'_filter").css(\'border\', \'1px solid red\');
-        // setInterval( function () { '.$tableID.'.ajax.reload( null, false ); }, 30000 );
+        return '';
     }
 
-    //    '.self::columnIndexNames($columns,$tableID).'
-    public static function columnIndexNames($columns, $of)
+    /**
+     * Hook after DataTable init (must return string — concatenated into JS).
+     */
+    public function postTableCode(): string
+    {
+        return '';
+    }
+
+    /**
+     * columnDefs JS snippet (must return string — concatenated into JS).
+     */
+    public function columnDefs(): string
+    {
+        return '';
+    }
+
+    /**
+     * @param list<array<string, mixed>> $columns
+     */
+    public function javaScript($columns): string
+    {
+        $tableID = $this->getTagID();
+        $langUrl = $this->languageUrl;
+        $dom = $this->buttons !== [] ? 'Bfrtip' : 'lfrtip';
+        $buttonsJs = $this->buttons !== []
+            ? ', buttons: [ '.\Ease\Part::partPropertiesToString($this->buttons).']'
+            : '';
+
+        return $this->preTableCode().<<<EOD
+
+    var {$tableID} = $('#{$tableID}').DataTable({
+{$this->footerCallback()}
+        dom: "{$dom}",
+        stateSave: true,
+        responsive: true,
+        processing: true,
+        serverSide: false,
+        lengthMenu: [[10, 25, 50, 100, 200, 500, -1], [10, 25, 50, 100, 200, 500, "
+EOD._('All pages').<<<EOD
+"]],
+        language: { url: "{$langUrl}" },
+{$this->tableCode($tableID)}
+        ajax: {
+            url: "{$this->ajax2db}",
+            dataSrc: "data"
+        },
+{$this->columnDefs()}
+        columns: [
+EOD.self::getColumnsScript($columns).<<<EOD
+
+        ]
+{$buttonsJs}
+    });
+
+{$this->postTableCode()}
+    $('.tablefilter').change(function () { {$tableID}.draw(); });
+
+EOD;
+    }
+
+    /**
+     * @param list<array<string, mixed>> $columns
+     */
+    public static function columnIndexNames($columns, $of): string
     {
         $colsCode[] = 'var tableColumnIndex = [];';
 
@@ -362,15 +371,15 @@ EOD;
     /**
      * Gives You Columns JS.
      *
-     * @return string
+     * @param list<array<string, mixed>> $columns
      */
-    public static function getColumnsScript(array $columns)
+    public static function getColumnsScript(array $columns): string
     {
         $parts = [];
 
         foreach ($columns as $properties) {
             $name = $properties['name'];
-            unset($properties['name']);
+            unset($properties['name'], $properties['label']);
             $properties['data'] = $name;
             $parts[] = '{'.\Ease\Part::partPropertiesToString($properties).'}';
         }
@@ -381,7 +390,7 @@ EOD;
     /**
      * Engine columns to Table Header columns format.
      *
-     * @param array<string, array<string, string>> $columns
+     * @param list<array<string, mixed>> $columns
      *
      * @return array<string, string>
      */
@@ -390,14 +399,14 @@ EOD;
         $header = [];
 
         foreach ($columns as $properties) {
-            if (array_key_exists('hidden', $properties) && ($properties['hidden'] === true)) {
+            if (\array_key_exists('hidden', $properties) && ($properties['hidden'] === true)) {
                 continue;
             }
 
             if (isset($properties['label'])) {
-                $header[$properties['name']] = $properties['label'];
+                $header[$properties['name']] = (string) $properties['label'];
             } else {
-                $header[$properties['name']] = $properties['name'];
+                $header[$properties['name']] = (string) $properties['name'];
             }
         }
 
@@ -407,54 +416,44 @@ EOD;
     /**
      * Define footer Callback code.
      *
-     * @param string $initialContent
-     *
-     * @return string
+     * @param string|null $initialContent
      */
-    public function footerCallback($initialContent = null)
+    public function footerCallback($initialContent = null): string
     {
         if (empty($initialContent)) {
-            $foterCallBack = '';
-        } else {
-            $foterCallBack = <<<'EOD'
+            return '';
+        }
+
+        return <<<EOD
 
         "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
-
-            // Remove the formatting to get integer data for summation
             var intVal = function ( i ) {
                 return typeof i === 'string' ?
                     i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
+                    typeof i === 'number' ? i : 0;
             };
-
-EOD.$initialContent.<<<'EOD'
-
+{$initialContent}
         },
 
 EOD;
-        }
-
-        return $foterCallBack;
     }
 
     public function addFooter(): void
     {
-        foreach (current($this->tHead->getContents())->getContents() as $column) {
-            $columns[] = '';
+        $columns = [];
+        $head = $this->tHead?->getContents();
+        $firstRow = \is_array($head) ? current($head) : null;
+        if (\is_object($firstRow) && method_exists($firstRow, 'getContents')) {
+            foreach ($firstRow->getContents() as $column) {
+                $columns[] = '';
+            }
         }
 
         unset($columns['id']);
-        $this->addRowFooterColumns($columns);
-    }
-
-    public function columnDefs(): void
-    {
-    }
-
-    public function postTableCode(): void
-    {
+        if ($columns !== []) {
+            $this->addRowFooterColumns($columns);
+        }
     }
 
     /**
@@ -462,11 +461,16 @@ EOD;
      */
     public function finalize(): void
     {
-        $this->includeCss($this->css);
-        $this->includeJavascript($this->js);
+        if ($this->css !== '') {
+            $this->includeCss($this->css);
+        }
+
+        if ($this->js !== '') {
+            $this->includeJavaScript($this->js);
+        }
+
         $this->addRowHeaderColumns(self::columnsToHeader($this->columns));
-        //        $this->addItem(new FilterDialog($this->getTagID(), $this->columns));
-        $this->addJavascript($this->javaScript($this->columns));
+        $this->addJavaScript($this->javaScript($this->columns));
 
         if ($this->showFooter) {
             $this->addFooter();

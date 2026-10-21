@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-// Autoloader shim for package: php-abraflexi-datatables
+// Autoloader shim for package: php-vitexsoftware-abraflexi-datatables
 
 require_once '/usr/share/php/EaseTWB5WidgetsAbraFlexi/autoload.php';
 

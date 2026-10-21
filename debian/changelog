@@ -1,3 +1,25 @@
+php-vitexsoftware-abraflexi-datatables (1.3.0) unstable; urgency=medium
+
+  * Rename binary/source package to php-vitexsoftware-abraflexi-datatables
+    (VitexSoftware Debian naming convention)
+  * Provides/Replaces/Conflicts: php-abraflexi-datatables for smooth upgrades
+  * Depend on libjs-jquery-datatables (+ libjs-jquery)
+  * Register pkg-php-tools autoloader; install AppStream metainfo
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Wed, 21 Oct 2026 09:30:00 +0200
+
+php-abraflexi-datatables (1.2.1) unstable; urgency=medium
+
+  * Fix PHP 8.4 fatals: preTableCode/tableCode/postTableCode/columnDefs must
+    return string (they are concatenated into DataTable JS)
+  * Use Debian libjs-jquery-datatables assets under /javascript/jquery-datatables/
+  * Treat AbraFlexi\RO::$filter as string in dataSourceURI (not array_merge)
+  * Fix prepareColumns to reset per-column state and map known AbraFlexi types
+  * Default dom without Buttons plugin (not shipped by Debian package)
+  * Czech language via DataTables CDN i18n; depend on libjs-jquery-datatables
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Wed, 21 Oct 2026 09:15:00 +0200
+
 php-abraflexi-datatables (1.2.0) unstable; urgency=medium
 
   * Add AppStream stock icon (abraflexi-datatables.svg) to metainfo and install it to hicolor icon theme
@@ -18,4 +40,5 @@ php-abraflexi-datatables (0.1.0) unstable; urgency=low
   * Initial release. Closes: #nnnn
     <nnnn is the bug number of your ITP>
 
- -- Vitex <vitezslav.dvorak@spojenet.cz>  Thu, 24 Jul 2025 15:19:37 +0200
+
+ -- Vitex <info@vitexsoftware.cz>  Mon, 16 Jun 2025 14:56:06 +0200

@@ -3,8 +3,8 @@
 
 ![Package Logo](abraflexi-datatables.svg?raw=true "Project Logo")
 
-php-abraflexi-datatables
-========================
+php-vitexsoftware-abraflexi-datatables
+======================================
 
 PHP library for displaying [AbraFlexi](https://www.abraflexi.eu/) evidence data in interactive [DataTables](https://datatables.net/) powered by Bootstrap 5.
 
@@ -31,7 +31,7 @@ composer require vitexsoftware/datatables-abraflexi
 **Via Debian/Ubuntu package:**
 
 ```shell
-sudo apt install php-abraflexi-datatables
+sudo apt install php-vitexsoftware-abraflexi-datatables
 ```
 
 Requirements
@@ -42,6 +42,8 @@ Requirements
 | PHP | >= 8.0 |
 | vitexsoftware/abraflexi-bricks | ^1.5 |
 | vitexsoftware/ease-bootstrap5-widgets-abraflexi | ^1.4 |
+| libjs-jquery-datatables (Debian) | * |
+| libjs-jquery (Debian) | * |
 
 Configuration
 -------------
@@ -59,11 +61,19 @@ Usage
 -----
 
 ```php
-use AbraFlexi\ui\DataTables\RWTableau;
+use AbraFlexi\ui\DataTables\DataTable;
+use Ease\TWB5\WebPage;
 
-$table = new RWTableau('adresar');
-$table->show();
+\Ease\Part::jQueryze();
+WebPage::singleton()->addToMain(new DataTable(new \AbraFlexi\Adresar()));
 ```
+
+Feed JSON from a sibling `abraflexidata.php` (see `Example/`). The widget loads
+DataTables assets from Debian package `libjs-jquery-datatables` at
+`/javascript/jquery-datatables/`.
+
+Optional `$properties['buttons']` requires the DataTables Buttons extension
+(not shipped by Debian); leave empty for the default `lfrtip` layout.
 
 Example
 -------

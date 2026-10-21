@@ -3,6 +3,7 @@
 PKG_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/~.*//')
 PKG_SOURCE  := $(shell jq -r '.name' composer.json)
 PKG_TYPE    := $(shell jq -r '.type' composer.json)
+PKG_ROOT    := debian/php-vitexsoftware-abraflexi-datatables
 
 %:
 	dh $@
@@ -10,8 +11,12 @@ PKG_TYPE    := $(shell jq -r '.type' composer.json)
 override_dh_install:
 	dh_install
 	sed -i "s|'unknown'|'$(PKG_SOURCE)'|" \
-		debian/php-abraflexi-datatables/usr/share/php/AbraFlexiUiDataTables/autoload.php
+		$(PKG_ROOT)/usr/share/php/AbraFlexiUiDataTables/autoload.php
 	sed -i "s|'0.0.0'|'$(PKG_VERSION)'|" \
-		debian/php-abraflexi-datatables/usr/share/php/AbraFlexiUiDataTables/autoload.php
+		$(PKG_ROOT)/usr/share/php/AbraFlexiUiDataTables/autoload.php
 	sed -i "s|'library'|'$(PKG_TYPE)'|g" \
-		debian/php-abraflexi-datatables/usr/share/php/AbraFlexiUiDataTables/autoload.php
+		$(PKG_ROOT)/usr/share/php/AbraFlexiUiDataTables/autoload.php
+	# Register autoloader for pkg-php-tools
+	install -m0755 -d $(PKG_ROOT)/usr/share/pkg-php-tools/autoloaders
+	echo 'vitexsoftware datatables-abraflexi AbraFlexiUiDataTables/autoload.php' \
+		> $(PKG_ROOT)/usr/share/pkg-php-tools/autoloaders/php-vitexsoftware-abraflexi-datatables
