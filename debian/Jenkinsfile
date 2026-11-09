@@ -53,7 +53,10 @@ distributions.each { distro ->
         node {
             ansiColor('xterm') {
                 stage('Checkout ' + distroName) {
-                    deleteDir()
+                    sh 'sudo chown -R jenkins:jenkins . 2>/dev/null || true'
+                    // Empty in place (deleteDir() races with delayed unlink on NFS workspaces);
+                    // the shared checkout workspace has read-only .git packs unstash cannot overwrite.
+                    sh 'find . -mindepth 1 -delete 2>/dev/null || true'
                     unstash 'src'
                     def imageName = vendor + '/' + distro
                     buildImage = docker.image(imageName)
