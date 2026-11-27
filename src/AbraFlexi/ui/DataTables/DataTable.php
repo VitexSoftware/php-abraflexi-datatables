@@ -236,7 +236,7 @@ EOD);
      *
      * @return string Data Source URI
      */
-    public function dataSourceURI($engine): string
+    public function dataSourceURI($engine)
     {
         $conds = ['class' => $engine::class];
 
